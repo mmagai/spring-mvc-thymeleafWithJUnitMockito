@@ -76,6 +76,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> searchPosts(String query) {
+        return postRepository.searchPosts(query);
+    }
+
+    @Override
     public Post findById(Long postId) {
         return postRepository.findById(postId).get();
     }

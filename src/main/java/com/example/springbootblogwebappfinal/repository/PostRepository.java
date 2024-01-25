@@ -19,4 +19,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 //    )
 //    List<Post> searchPosts(String query);
 
+   @Query("SELECT p from Post p where " +
+           "p.title LIKE CONCAT('%',:query,'%') OR " +
+           "p.shortDescription LIKE CONCAT('%',:query,'%')"
+
+   )
+   List<Post> searchPosts(String query);
 }

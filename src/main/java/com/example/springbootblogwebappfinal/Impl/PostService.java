@@ -27,7 +27,7 @@ public interface PostService {
    //// PostDto findById(Long postId);
 
 
-
+     List<Post>searchPosts(String query);
    // void deletePostById(Long postId);
 
    // List<PostDto> searchPosts(String query);

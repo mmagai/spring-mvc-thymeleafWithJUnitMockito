@@ -97,6 +97,16 @@ public class PostController {
         return "/admin/viewPost";
 
     }
+
+    @GetMapping("/admin/posts/search")
+    public String searchPost(@RequestParam("query") String query,
+                           Model model){
+
+        List<Post>post = postService.searchPosts(query);
+        model.addAttribute("post",post);
+        return "/admin/posts";
+
+    }
    /* @GetMapping("/admin/post/newPost")
     public String createPost(Model model){
 

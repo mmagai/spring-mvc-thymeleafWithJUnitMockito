@@ -41,7 +41,7 @@ public class PostController {
     public String createPost(@ModelAttribute Post post){
 
         post.setUrl(getUrl(post.getTitle()));
-        postService.createPost(post);
+        postService.savePost(post);
         return "redirect:/admin/getAllPost";
 
     }
@@ -55,6 +55,46 @@ public class PostController {
         return url;
 
 
+
+    }
+
+    // handler method to edit the data
+    @GetMapping("/admin/posts/{postId}/edit")
+    public String editPost(@PathVariable("postId") Long postId,
+                           Model model){
+
+       Post editPost = postService.findById(postId);
+       model.addAttribute("editPost",editPost);
+       return "/admin/editPosts";
+
+    }
+    @PostMapping("/admin/savePost/{postId}")
+    public String saveEditedPost(@ModelAttribute Post post,
+                                 @PathVariable("postId") Long postId,
+                                 Model model){
+
+        post.setId(postId);
+        postService.savePost(post);
+        return "redirect:/admin/getAllPost";
+
+
+    }
+
+    @GetMapping("/admin/posts/{postId}/delete")
+    public String deletePost(@PathVariable("postId") Long postId){
+
+        postService.deleteById(postId);
+        return "redirect:/admin/getAllPost";
+
+    }
+
+    @GetMapping("/admin/posts/{postUrl}/view")
+    public String viewPost(@PathVariable("postUrl") String postUrl,
+                           Model model){
+
+        Post post = postService.findByUrl(postUrl);
+        model.addAttribute("viewPost",post);
+        return "/admin/viewPost";
 
     }
    /* @GetMapping("/admin/post/newPost")

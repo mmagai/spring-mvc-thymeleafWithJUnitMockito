@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,6 +48,20 @@ public class PostServiceTest {
        assertEquals(2,actualPostList.size());
 
  }
+
+    @Test
+    public void testForUrl(){
+
+        Post post1 = new Post("test_1","test_url","test_content","test_shortDescription", LocalDateTime.now(),LocalDateTime.now());
+
+
+        when(postRepository.findByUrl("test_url")).thenReturn(Optional.of(post1));
+
+         Post actualPost = postServiceImpl.findByUrl("test_url");
+
+        assertEquals(post1, actualPost);
+
+    }
 
     @Test
     public void VerfiyfindAllMethod(){

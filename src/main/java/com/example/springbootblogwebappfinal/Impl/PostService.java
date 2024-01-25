@@ -11,7 +11,15 @@ public interface PostService {
 
     List<Post> findAllUsingJDBC();
 
-    void createPost(Post post);
+   // void createPost(Post post);
+
+    Post findById(Long postId);
+
+    void savePost(Post post);
+
+    void deleteById(Long postId);
+
+    Post findByUrl(String postUrl);
     //List<Post> findAll();
 
     //void createPost(PostDto postDto);

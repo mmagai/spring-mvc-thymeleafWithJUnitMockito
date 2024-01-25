@@ -61,8 +61,23 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void createPost(Post post) {
+    public void savePost(Post post) {
          postRepository.save(post);
+    }
+
+    @Override
+    public void deleteById(Long postId) {
+        postRepository.deleteById(postId);
+    }
+
+    @Override
+    public Post findByUrl(String postUrl) {
+        return postRepository.findByUrl(postUrl).get();
+    }
+
+    @Override
+    public Post findById(Long postId) {
+        return postRepository.findById(postId).get();
     }
 
    /* @Override

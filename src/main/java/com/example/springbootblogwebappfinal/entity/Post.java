@@ -33,7 +33,7 @@ public class Post {
         this.updateOn = updateOn;
     }
 
-    @Lob
+
     @Column(nullable = false)
     private String content;
 
